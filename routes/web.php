@@ -30,3 +30,5 @@ Route::get('/posts/{id}', 'PostsController@show');
 Route::get('Admin/posts/{id}/edit', 'PostsController@edit')->middleware('auth');
 
 Route::post('Admin/posts/{id}/update', 'PostsController@update')->middleware('auth');
+
+Route::get('Admin/posts/{id}/delete', 'PostsController@destroy')->middleware('auth');

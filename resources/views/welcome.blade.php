@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
+  <h2>Les 10 derniers articles</h2>
+  
     <div class="row">
-
           @foreach($posts as $post)
           <div class="col-md-4 mb-3">
           <div class="card" >
@@ -11,8 +12,11 @@
             <div class="card-body">
               <h5 class="card-title">{{ $post->title }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ $post->user->name }}</h6>
-              <p class="card-text">{{ $post->content }}</p>
-              <a href="{{ URL::action('PostsController@show', $post->id) }}" class="card-link">Lire la suite</a>
+              <p class="card-text">{{ Str::words($post->content,17,'...') }}</p>
+              <div class="d-flex justify-content-end">
+                <a href="{{ URL::action('PostsController@show', $post->id) }}" class="btn btn-secondary">Lire la suite</a>
+              </div>
+
             </div>
           </div>
           </div>

@@ -13,8 +13,9 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         //$user = [0=>1,1=>2];
-        //getting user id of jane smith
-        $user[]=DB::table('users')->value('id');
+        //getting users id
+        //$user[]=DB::table('users')->value('id');
+        $user = DB::table('users')->pluck('id');
         //
         for ($i=0; $i < 20; $i++) {
           Post::create([

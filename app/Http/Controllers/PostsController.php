@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Post;
 use Auth;
 
+
+
 class PostsController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +29,7 @@ class PostsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -47,7 +52,7 @@ class PostsController extends Controller
           $inputs['user_id'] = Auth::user()->id;
           $post = Post::create($inputs);
        }
-       return redirect()->back();
+       return redirect()->route('home'); /* redirect to dasboard view  */
     }
 
     /**
@@ -87,7 +92,7 @@ class PostsController extends Controller
     {
        $post = Post::where('id', $id)->firstOrFail(); /* find post with id in DB */
        $post->update($request->only(['title', 'content'])); /* update values */
-       return redirect()->back(); /* redirect to view post edit */
+       return redirect()->route('home'); /* redirect to dasboard view  */
     }
 
     /**
@@ -98,6 +103,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Post::destroy($id);
+      return redirect()->route('home'); /* redirect to dasboard view  */
     }
 }
