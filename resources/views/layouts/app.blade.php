@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     @yield('css')
 </head>
 <body>
@@ -50,6 +51,12 @@
                                 </li>
                             @endif
                         @else
+                            <li>
+                              <a class="nav-link" href="{{ route('home') }}">@lang('Tableau de bord')</a>
+                            </li>
+                            <li>
+                              <a class="nav-link" href="{{ route('createPost') }}">@lang('Ajouter un article')</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,6 +74,7 @@
                                     </form>
                                 </div>
                             </li>
+
                         @endguest
                     </ul>
                 </div>

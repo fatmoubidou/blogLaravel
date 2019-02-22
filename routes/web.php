@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'PostsController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('Admin/home', 'AdminController@index')->name('home'); //dashboard
+
+//POST
+Route::get('Admin/posts/create', 'PostsController@create')->name('createPost')->middleware('auth');
+
+Route::put('Admin/posts/create', 'PostsController@store')->middleware('auth');
+
+Route::get('/posts/{id}', 'PostsController@show');
+
+Route::get('Admin/posts/{id}/edit', 'PostsController@edit')->middleware('auth');
+
+Route::post('Admin/posts/{id}/update', 'PostsController@update')->middleware('auth');
